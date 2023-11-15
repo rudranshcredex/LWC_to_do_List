@@ -1,3 +1,14 @@
 .main{
     background-color: white;
 }
+
+.task-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-task{
+    
+
+   
+}

@@ -7,11 +7,29 @@
 -->
 <template>
     <div class="main">
-        <div class="add-task">
-            <lightning-input 
-              type="text"
-              label="Enter Task"
-            ></lightning-input>
+        <div class="task-box">
+            <div class="add-task">
+                <lightning-input 
+                  type="text"
+                  label="Enter Task"
+                  value={userInput}
+                  onchange={handleInput} 
+                ></lightning-input>
+    
+                <lightning-button 
+                  variant="brand"
+                  label="Add Task" 
+                  onclick={addTaskButton}
+                ></lightning-button>
+            </div>
+        </div>
+
+        <div class="task-list">
+            <ul>
+                <template for:each={task} for:item="taskItem">
+                    <li key={taskItem}>{taskItem}</li>
+                </template>
+            </ul>
         </div>
     </div>
 </template>
