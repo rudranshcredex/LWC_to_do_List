@@ -1,6 +1,6 @@
 <!--
-  @description       : to do list in lwc
-  @author            : Rudransh Shukla
+  @description       : 
+  @author            : Rudransh
   @group             : 
   @last modified on  : 11-15-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
@@ -25,11 +25,41 @@
         </div>
 
         <div class="task-list">
-            <ul>
-                <template for:each={task} for:item="taskItem">
-                    <li key={taskItem}>{taskItem}</li>
-                </template>
-            </ul>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Checkbox</th>
+                        <th>Task</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <template for:each={task} for:item="taskItem">
+                        <tr key={taskItem.id}>
+                            <td>
+                                <lightning-input 
+                                    type="checkbox" 
+                                    value={taskItem.id} 
+                                    checked={taskItem.isSelected} 
+                                    onchange={handleCheckboxChange}
+                                ></lightning-input>
+                            </td>
+                            <template if:false={selected}>
+                                <td class="with-StrikeThrough">{taskItem.taskName}</td>
+                            </template>
+                            <template if:true={selected}>
+                                <td>{taskItem.taskName}</td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+
+            <lightning-button 
+                variant="brand"
+                label="Remove Selected Tasks" 
+                onclick={removeTasks} 
+            ></lightning-button>
         </div>
     </div>
 </template>
