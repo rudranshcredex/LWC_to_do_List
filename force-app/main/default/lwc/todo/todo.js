@@ -1,12 +1,9 @@
-
 import { LightningElement, track } from 'lwc';
 
 export default class Todo extends LightningElement {
     @track userInput = '';
-    task = [];
-    taskList=[];
-    selectedId = [];
-    selected = true;
+    @track task = [];
+    @track taskList = [];
 
     handleInput(event) {
         this.userInput = event.target.value;
@@ -19,22 +16,18 @@ export default class Todo extends LightningElement {
     }
 
     handleCheckboxChange(event) {
-        const taskId = event.target.value;
-        console.log('taskId------>', taskId);
+        this.taskList.forEach(item => {
+            if (item.id == event.target.value) {
+                item.isSelected = true;
+            }
+        });
 
-        this.selectedId.push(taskId);
-        // this.task.forEach(taskItem => {
-        //     if (taskItem.id === taskId) {
-        //         taskItem.isSelected = event.target.checked;
-        //     }
-        // });
-
-        console.log(' this.selectedId------->',  this.selectedId.length);
-
+        const selectedTasks = this.taskList.filter(item => item.isSelected);
     }
 
-    removeTasks(){
-        this.selected=false;
+    handleEnterKey(event) {
+        if (event.keyCode === 13) {
+            this.addTaskButton();
+        }
     }
-
 }
