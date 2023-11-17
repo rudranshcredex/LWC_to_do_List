@@ -6,20 +6,21 @@
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
   
-<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:appHostable,force:lightningQuickAction,force:hasSObjectName" controller="SendEmailClass">
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:appHostable,force:lightningQuickAction,force:hasSObjectName" controller="SendEmail">
     <aura:attribute name="emailSubject" type="String" />
     <aura:attribute name="emailTo" type="String" />
     <aura:attribute name="emailBody" type="String" />
+    <aura:attribute name="uploadedFiles" type="Object[]" />
 
     <lightning:input label="Email Subject" value="{!v.emailSubject}" />
     <lightning:input label="Email To" value="{!v.emailTo}" />
-    <lightning:textarea label="Email Body" value="{!v.emailBody}" />
+    <lightning:textarea label="Email Body" value="{!v.emailBody}" onchange="{!c.handleChange}"/>
 
     <lightning:fileUpload label="Attachment" 
                           name="fileUploader"
                           accept=".pdf, .doc, .docx, .png, .jpg, .jpeg"
-                          recordId="{!v.recordId}"
-                          onuploadfinished="{!c.handleUploadFinished}" />
+                          onuploadfinished="{!c.handleUploadFinished}" 
+                          onchange="{!c.handleChange}" />
 
     <lightning:button label="Send Email" onclick="{!c.sendEmail}" />
 </aura:component>

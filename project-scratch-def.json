@@ -1,0 +1,11 @@
+{
+    "orgName": "My Scratch Org",
+    "edition": "Developer",
+    "features": ["Communities", "ServiceCloud"],
+    "settings": {
+      "orgPreferenceSettings": {
+        "s1DesktopEnabled": true
+      }
+    }
+  }
+  
